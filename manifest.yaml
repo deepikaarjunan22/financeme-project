@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finance-deploy
+  labels:
+    app: finance-deploy
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: finance-app
+    spec:
+      containers:
+      - name: finance-container
+        image: deepikaarjunan/finance-image:v1
+        ports:
+        - containerPort: 8084
+  selector:
+    matchLabels:
+      app: finance-app
